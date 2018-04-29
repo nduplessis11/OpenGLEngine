@@ -11,8 +11,8 @@ public:
 	Buffer();
 	~Buffer();
 
-	void Bind();
-	void Unbind();
+	void Bind() const;
+	void Unbind() const;
 	void AddData(GLfloat * data, GLint count);
 };
 

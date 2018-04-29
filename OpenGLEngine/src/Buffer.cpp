@@ -12,12 +12,12 @@ Buffer::~Buffer()
 {
 }
 
-void Buffer::Bind()
+void Buffer::Bind() const
 {
 	glBindBuffer(GL_ARRAY_BUFFER, m_Id);
 }
 
-void Buffer::Unbind()
+void Buffer::Unbind() const
 {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
