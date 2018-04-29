@@ -47,32 +47,34 @@ int main(void)
 		"void main() {"
 		"  frag_colour = vec4(0.5, 0.0, 0.5, 1.0);"
 		"}";
-
-	Shader shader;
-	shader.CreateProgram(vertex_shader, fragment_shader);
-
-	VertexArray va;
-
-	Buffer buffer;
-	buffer.AddData(points, 9);
-
-	Renderer renderer;
-	renderer.LoadBuffers(&va, &buffer);
-	renderer.AddShader(&shader);
-
-	/* Loop until the user closes the window */
-	while (!glfwWindowShouldClose(window))
 	{
-		/* Render here */
-		renderer.Draw();
+		Shader shader;
+		shader.CreateProgram(vertex_shader, fragment_shader);
 
-		/* Swap front and back buffers */
-		glfwSwapBuffers(window);
+		//VertexArray va;
 
-		/* Poll for and process events */
-		glfwPollEvents();
+		//Buffer buffer;
+		//buffer.AddData(points, 9);
+
+		Renderer renderer;
+		//renderer.LoadBuffers(&va, &buffer);
+		renderer.AddShader(&shader);
+
+		renderer.CreateRect(-0.5f, 0.5f, 0.5f, 0.5f);
+
+		/* Loop until the user closes the window */
+		while (!glfwWindowShouldClose(window))
+		{
+			/* Render here */
+			renderer.Draw();
+
+			/* Swap front and back buffers */
+			glfwSwapBuffers(window);
+
+			/* Poll for and process events */
+			glfwPollEvents();
+		}
 	}
-
 	glfwTerminate();
 	return 0;
 }

@@ -10,6 +10,7 @@ Buffer::Buffer()
 
 Buffer::~Buffer()
 {
+	glDeleteBuffers(1, &m_Id);
 }
 
 void Buffer::Bind() const
@@ -22,7 +23,7 @@ void Buffer::Unbind() const
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void Buffer::AddData(GLfloat * data, GLint count)
+void Buffer::AddData(GLfloat * data, GLint count) const
 {
 	Bind();
 	glBufferData(GL_ARRAY_BUFFER, count * sizeof(GLfloat), data, GL_STATIC_DRAW);

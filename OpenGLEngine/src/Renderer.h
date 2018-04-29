@@ -4,6 +4,8 @@
 #include "Buffer.h"
 #include "Shader.h"
 
+#include <GL/glew.h>
+
 class Renderer
 {
 private:
@@ -17,5 +19,6 @@ public:
 	void LoadBuffers(const VertexArray * va, const Buffer * buffer);
 	void AddShader(const Shader * shader);
 	void Draw();
+	void CreateRect(GLfloat x, GLfloat y, GLfloat width, GLfloat height);
 };
 

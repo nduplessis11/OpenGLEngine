@@ -4,9 +4,9 @@ Shader::Shader()
 {
 }
 
-
 Shader::~Shader()
 {
+	glDeleteProgram(m_Id);
 }
 
 void Shader::CreateProgram(const char * vertex_shader, const char * fragment_shader)
@@ -22,6 +22,9 @@ void Shader::CreateProgram(const char * vertex_shader, const char * fragment_sha
 	glAttachShader(m_Id, fs);
 	glAttachShader(m_Id, vs);
 	glLinkProgram(m_Id);
+
+	glDeleteShader(fs);
+	glDeleteShader(vs);
 }
 
 void Shader::UseProgram() const
