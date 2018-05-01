@@ -45,4 +45,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\shader.fs" />
+    <None Include="res\shaders\shader.vs" />
+  </ItemGroup>
 </Project>

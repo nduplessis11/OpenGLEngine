@@ -34,33 +34,17 @@ int main(void)
 		-0.5f, -0.5f,  0.0f
 	};
 
-	const char* vertex_shader =
-		"#version 400\n"
-		"in vec3 vp;"
-		"void main() {"
-		"  gl_Position = vec4(vp, 1.0);"
-		"}";
-
-	const char* fragment_shader =
-		"#version 400\n"
-		"out vec4 frag_colour;"
-		"void main() {"
-		"  frag_colour = vec4(0.5, 0.0, 0.5, 1.0);"
-		"}";
 	{
-		Shader shader;
-		shader.CreateProgram(vertex_shader, fragment_shader);
+		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
 
-		//VertexArray va;
+		VertexArray va;
 
-		//Buffer buffer;
-		//buffer.AddData(points, 9);
+		Buffer buffer;
+		buffer.AddData(points, 9);
 
 		Renderer renderer;
-		//renderer.LoadBuffers(&va, &buffer);
+		renderer.LoadBuffers(&va, &buffer);
 		renderer.AddShader(&shader);
-
-		renderer.CreateRect(-0.5f, 0.5f, 0.5f, 0.5f);
 
 		/* Loop until the user closes the window */
 		while (!glfwWindowShouldClose(window))

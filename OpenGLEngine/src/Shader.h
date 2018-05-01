@@ -1,16 +1,20 @@
 #pragma once
 
 #include <GL/glew.h>
+#include <string>
 
 class Shader
 {
 private:
 	GLuint m_Id;
 public:
-	Shader();
+	Shader(const std::string& vertexPath, const std::string& fragmentPath);
 	~Shader();
 
-	void CreateProgram(const char * vertex_shader, const char * fragment_shader);
-	void UseProgram() const;
+	void CreateProgram(const std::string& vertexSource, const std::string& fragmentSource);
+	void Bind() const;
+	void Unbind() const;
+private:
+	std::string LoadShaderFile(const std::string& filepath);
 };
 

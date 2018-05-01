@@ -32,35 +32,12 @@ void Renderer::AddShader(const Shader * shader)
 
 void Renderer::Draw()
 {
+	m_Shader->Bind();
+	m_Va->Bind();
+
 	glClear(GL_COLOR_BUFFER_BIT);
-	m_Shader->UseProgram();
-	m_Va->Bind();
-	glDrawArrays(GL_TRIANGLES, 0, 6);
-}
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 
-void Renderer::CreateRect(GLfloat x, GLfloat y, GLfloat width, GLfloat height)
-{
-	GLfloat positions[] = {
-		x, y, 0.0f,
-		x+(width), y - height, 0.0f,
-		x,y-height, 0.0f,
-
-		x, y, 0.0f,
-		x+width, y, 0.0f,
-		x + (width), y - height, 0.0f,
-	};
-	
-	m_Va = new VertexArray();
-
-	m_Buffer = new Buffer();
-	m_Buffer->AddData(positions, 18);
-
-	m_Va->Bind();
-	m_Buffer->Bind();
-
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-
+	m_Shader->Unbind();
 	m_Va->Unbind();
-	m_Buffer->Unbind();
 }
