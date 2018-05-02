@@ -2,7 +2,7 @@
 #include <GLFW/glfw3.h>
 
 #include "VertexArray.h"
-#include "Buffer.h"
+#include "VertexBuffer.h"
 #include "Renderer.h"
 #include "Shader.h"
 
@@ -39,7 +39,7 @@ int main(void)
 
 		VertexArray va;
 
-		Buffer buffer;
+		VertexBuffer buffer;
 		buffer.AddData(points, 9);
 
 		Renderer renderer;

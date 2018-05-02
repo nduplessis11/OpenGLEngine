@@ -10,7 +10,7 @@ Renderer::~Renderer()
 {
 }
 
-void Renderer::AddVertexData(const VertexArray * va, const Buffer & buffer)
+void Renderer::AddVertexData(const VertexArray * va, const VertexBuffer & buffer)
 {
 	m_Va = va;
 

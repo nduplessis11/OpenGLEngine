@@ -2,14 +2,14 @@
 
 #include <GL/glew.h>
 
-class Buffer
+class VertexBuffer
 {
 private:
 	GLuint m_Id;
 
 public:
-	Buffer();
-	~Buffer();
+	VertexBuffer();
+	~VertexBuffer();
 
 	void Bind() const;
 	void Unbind() const;

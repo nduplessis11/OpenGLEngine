@@ -1,7 +1,7 @@
 #pragma once
 
 #include "VertexArray.h"
-#include "Buffer.h"
+#include "VertexBuffer.h"
 #include "Shader.h"
 
 #include <GL/glew.h>
@@ -15,7 +15,7 @@ public:
 	Renderer();
 	~Renderer();
 
-	void AddVertexData(const VertexArray * va, const Buffer & buffer);
+	void AddVertexData(const VertexArray * va, const VertexBuffer & buffer);
 	void AddShader(const Shader * shader);
 	void Draw();
 };
