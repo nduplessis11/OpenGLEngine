@@ -10,19 +10,18 @@ Renderer::~Renderer()
 {
 }
 
-void Renderer::LoadBuffers(const VertexArray * va, const Buffer * buffer)
+void Renderer::AddVertexData(const VertexArray * va, const Buffer & buffer)
 {
-	m_Buffer = buffer;
 	m_Va = va;
 
 	m_Va->Bind();
-	m_Buffer->Bind();
+	buffer.Bind();
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
 	m_Va->Unbind();
-	m_Buffer->Unbind();
+	buffer.Unbind();
 }
 
 void Renderer::AddShader(const Shader * shader)

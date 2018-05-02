@@ -43,7 +43,7 @@ int main(void)
 		buffer.AddData(points, 9);
 
 		Renderer renderer;
-		renderer.LoadBuffers(&va, &buffer);
+		renderer.AddVertexData(&va, buffer);
 		renderer.AddShader(&shader);
 
 		/* Loop until the user closes the window */
