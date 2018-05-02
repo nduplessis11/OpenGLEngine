@@ -36,21 +36,19 @@ int main(void)
 
 	{
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
+		VertexArray vertexArray;
 
-		VertexArray va;
-
-		VertexBuffer buffer;
-		buffer.AddData(points, 9);
+		VertexBuffer vertexBuffer;
+		vertexBuffer.AddData(points, 9);
+		vertexArray.AddVertexBuffer(vertexBuffer);
 
 		Renderer renderer;
-		renderer.AddVertexData(&va, buffer);
-		renderer.AddShader(&shader);
 
 		/* Loop until the user closes the window */
 		while (!glfwWindowShouldClose(window))
 		{
 			/* Render here */
-			renderer.Draw();
+			renderer.Draw(vertexArray, shader);
 
 			/* Swap front and back buffers */
 			glfwSwapBuffers(window);
