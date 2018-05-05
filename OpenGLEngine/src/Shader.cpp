@@ -22,7 +22,7 @@ Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath)
 	glm::mat4 view(1.0f);
 	glm::mat4 projection = glm::perspective(glm::radians(70.0f), 4.0f / 3.0f, 0.1f, 100.0f);
 
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -2.0f));
 	
 	glUniformMatrix4fv(m_Model_s, 1, GL_FALSE, &model[0][0]);
 	glUniformMatrix4fv(m_View_s, 1, GL_FALSE, &view[0][0]);
