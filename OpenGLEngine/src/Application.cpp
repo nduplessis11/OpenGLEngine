@@ -5,16 +5,15 @@
 #include "VertexBuffer.h"
 #include "Renderer.h"
 #include "Shader.h"
+#include "Mesh.h"
 
 int main(void)
 {
 	GLFWwindow* window;
 
-	/* Initialize the library */
 	if (!glfwInit())
 		return -1;
 
-	/* Create a windowed mode window and its OpenGL context */
 	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
 	if (!window)
 	{
@@ -22,7 +21,6 @@ int main(void)
 		return -1;
 	}
 
-	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
 
 	if (glewInit() != GLEW_OK)
@@ -36,24 +34,13 @@ int main(void)
 
 	{
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
-		VertexArray vertexArray;
-
-		VertexBuffer vertexBuffer;
-		vertexBuffer.AddData(points, 9);
-		vertexArray.AddVertexBuffer(vertexBuffer);
-
+		Mesh mesh(points, 9);
 		Renderer renderer;
 
-		/* Loop until the user closes the window */
 		while (!glfwWindowShouldClose(window))
 		{
-			/* Render here */
-			renderer.Draw(vertexArray, shader);
-
-			/* Swap front and back buffers */
+			renderer.Draw(mesh, shader);
 			glfwSwapBuffers(window);
-
-			/* Poll for and process events */
 			glfwPollEvents();
 		}
 	}

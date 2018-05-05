@@ -2,12 +2,19 @@
 
 #include <GL/glew.h>
 
+#include "VertexArray.h"
+#include "VertexBuffer.h"
+
 class Mesh
 {
 private:
-	GLuint m_VertexArray;
+	VertexArray m_VertexArray;
+	VertexBuffer m_VertexBuffer;
 public:
-	Mesh();
+	Mesh(const GLfloat* data, GLuint count);
 	~Mesh();
+
+	void SetDraw();
+	void UnsetDraw();
 };
 

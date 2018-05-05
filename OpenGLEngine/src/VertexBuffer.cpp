@@ -23,7 +23,7 @@ void VertexBuffer::Unbind() const
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void VertexBuffer::AddData(GLfloat * data, GLint count) const
+void VertexBuffer::AddData(const GLfloat * data, GLint count) const
 {
 	Bind();
 	glBufferData(GL_ARRAY_BUFFER, count * sizeof(GLfloat), data, GL_STATIC_DRAW);

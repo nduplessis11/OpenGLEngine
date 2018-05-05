@@ -8,7 +8,6 @@ class VertexArray
 {
 private:
 	GLuint m_Id;
-
 public:
 	VertexArray();
 	~VertexArray();
