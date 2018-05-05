@@ -1,7 +1,5 @@
 #include "IndexBuffer.h"
 
-
-
 IndexBuffer::IndexBuffer(const GLuint* indices, GLuint count)
 	: m_Id(0)
 {

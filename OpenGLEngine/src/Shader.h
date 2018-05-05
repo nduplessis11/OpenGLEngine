@@ -7,6 +7,9 @@ class Shader
 {
 private:
 	GLuint m_Id;
+	GLuint m_Model_s;
+	GLuint m_View_s;
+	GLuint m_Projection_s;
 public:
 	Shader(const std::string& vertexPath, const std::string& fragmentPath);
 	~Shader();

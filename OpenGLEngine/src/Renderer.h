@@ -1,11 +1,8 @@
 #pragma once
+#include <GL/glew.h>
 
-#include "VertexArray.h"
-#include "VertexBuffer.h"
 #include "Shader.h"
 #include "Mesh.h"
-
-#include <GL/glew.h>
 
 class Renderer
 {
