@@ -1,12 +1,14 @@
 #include "VertexBuffer.h"
 
 
-VertexBuffer::VertexBuffer()
+VertexBuffer::VertexBuffer(const GLfloat * data, GLint count)
 	: m_Id(0)
 {
 	glGenBuffers(1, &m_Id);
+	Bind();
+	glBufferData(GL_ARRAY_BUFFER, count * sizeof(GLfloat), data, GL_STATIC_DRAW);
+	Unbind();
 }
-
 
 VertexBuffer::~VertexBuffer()
 {
@@ -21,11 +23,4 @@ void VertexBuffer::Bind() const
 void VertexBuffer::Unbind() const
 {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-}
-
-void VertexBuffer::AddData(const GLfloat * data, GLint count) const
-{
-	Bind();
-	glBufferData(GL_ARRAY_BUFFER, count * sizeof(GLfloat), data, GL_STATIC_DRAW);
-	Unbind();
 }

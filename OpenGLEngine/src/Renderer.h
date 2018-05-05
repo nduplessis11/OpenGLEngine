@@ -14,7 +14,6 @@ private:
 public:
 	Renderer();
 	~Renderer();
-	void Draw(const VertexArray & vertexArray, const Shader & shader) const;
 	void Draw(Mesh & mesh, const Shader & shader) const;
 };
 

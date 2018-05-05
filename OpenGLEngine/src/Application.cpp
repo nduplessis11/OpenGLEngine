@@ -32,9 +32,13 @@ int main(void)
 		-0.5f, -0.5f,  0.0f
 	};
 
+	GLuint indices[] = {
+		0, 1, 2
+	};
+
 	{
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
-		Mesh mesh(points, 9);
+		Mesh mesh(points, 9, indices, 3);
 		Renderer renderer;
 
 		while (!glfwWindowShouldClose(window))

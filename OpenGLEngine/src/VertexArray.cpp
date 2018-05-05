@@ -11,16 +11,18 @@ VertexArray::~VertexArray()
 	glDeleteVertexArrays(1, &m_Id);
 }
 
-void VertexArray::AddVertexBuffer(const VertexBuffer & buffer)
+void VertexArray::AddIndexedVertexBuffer(const VertexBuffer & vertexBuffer, const IndexBuffer & indexBuffer)
 {
 	Bind();
-	buffer.Bind();
 
+	vertexBuffer.Bind();
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+	indexBuffer.Bind();
 
 	Unbind();
-	buffer.Unbind();
+	vertexBuffer.Unbind();
+	indexBuffer.Unbind();
 }
 
 void VertexArray::Bind() const

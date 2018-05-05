@@ -2,14 +2,13 @@
 
 #include <GL/glew.h>
 
-class VertexBuffer
+class IndexBuffer
 {
 private:
 	GLuint m_Id;
-
 public:
-	VertexBuffer(const GLfloat * data, GLint count);
-	~VertexBuffer();
+	IndexBuffer(const GLuint* indices, GLuint count);
+	~IndexBuffer();
 
 	void Bind() const;
 	void Unbind() const;

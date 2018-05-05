@@ -1,9 +1,9 @@
 #include "Mesh.h"
 
-Mesh::Mesh(const GLfloat* data, GLuint count)
+Mesh::Mesh(const GLfloat* data, GLuint count, const GLuint* indices, GLuint indexCount)
+	: m_VertexBuffer(data, count), m_IndexBuffer(indices, indexCount)
 {
-	m_VertexBuffer.AddData(data, count);
-	m_VertexArray.AddVertexBuffer(m_VertexBuffer);
+	m_VertexArray.AddIndexedVertexBuffer(m_VertexBuffer, m_IndexBuffer);
 }
 
 Mesh::~Mesh()
