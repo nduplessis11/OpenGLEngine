@@ -49,12 +49,24 @@ int main(void)
 		0, 2, 3,
 
 		4, 5, 6,
-		4, 6, 7
+		4, 6, 7,
+
+		4, 5, 1,
+		4, 1, 0,
+
+		3, 2, 6,
+		3, 6, 7,
+
+		4, 0, 3,
+		4, 3, 7,
+
+		5, 1, 2,
+		5, 2, 6
 	};
 
 	{
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
-		Mesh mesh(points, sizeof(points) / sizeof(GLfloat), indices, 12);
+		Mesh mesh(points, sizeof(points) / sizeof(GLfloat), indices, 36);
 		Renderer renderer;
 
 		while (!glfwWindowShouldClose(window))
