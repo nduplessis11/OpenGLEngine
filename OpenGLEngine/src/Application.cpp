@@ -67,6 +67,8 @@ int main(void)
 	{
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
 		Mesh mesh(points, sizeof(points) / sizeof(GLfloat), indices, 36);
+		mesh.SetPosition(glm::vec3(0.0f, 1.0f, -5.0f));
+		mesh.SetRotation(glm::vec3(0.0f, 0.0f, 75.0f));
 		Renderer renderer;
 
 		while (!glfwWindowShouldClose(window))

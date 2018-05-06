@@ -17,8 +17,11 @@ Renderer::~Renderer()
 void Renderer::Draw(Mesh & mesh, const Shader & shader)
 {
 	shader.Bind();
-	m_Model = glm::rotate(m_Model, glm::radians(0.5f), glm::vec3(1.0f, 1.0f, 0.0f));
-	shader.SetModel(m_Model);
+	glm::mat4 model(1.0f);
+	model = glm::translate(model, mesh.GetPosition());
+	model = glm::rotate(model, glm::radians(mesh.GetRotation().z), glm::vec3(0.0f, 0.0f, 1.0f));
+
+	shader.SetModel(model);
 
 	mesh.SetDraw();
 
