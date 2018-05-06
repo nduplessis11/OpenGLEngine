@@ -25,24 +25,36 @@ int main(void)
 		return -1;
 
 	GLfloat points[] = {
-		-0.5f, -0.5f,  0.0f,
+		-0.5f, -0.5f,  0.5f,
 		 1.0f,  0.0f,  0.0f, 1.0f,
-		-0.5f,  0.5f,  0.0f,
+		-0.5f,  0.5f,  0.5f,
 		 0.0f,  1.0f,  0.0f, 1.0f,
-		 0.5f,  0.5f,  0.0f,
+		 0.5f,  0.5f,  0.5f,
 		 0.0f,  0.0f,  1.0f, 1.0f,
-		 0.5f, -0.5f,  0.0f,
+		 0.5f, -0.5f,  0.5f,
+		 0.0f,  1.0f,  1.0f, 1.0f,
+
+		-0.5f, -0.5f, -0.5f,
+		 1.0f,  0.0f,  0.0f, 1.0f,
+		-0.5f,  0.5f, -0.5f,
+		 0.0f,  1.0f,  0.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,
+		 0.0f,  0.0f,  1.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,
 		 0.0f,  1.0f,  1.0f, 1.0f
 	};
 
 	GLuint indices[] = {
 		0, 1, 2,
-		0, 2, 3
+		0, 2, 3,
+
+		4, 5, 6,
+		4, 6, 7
 	};
 
 	{
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
-		Mesh mesh(points, sizeof(points) / sizeof(GLfloat), indices, 6);
+		Mesh mesh(points, sizeof(points) / sizeof(GLfloat), indices, 12);
 		Renderer renderer;
 
 		while (!glfwWindowShouldClose(window))

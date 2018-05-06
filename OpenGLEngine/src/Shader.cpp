@@ -90,3 +90,16 @@ void Shader::Unbind() const
 {
 	glUseProgram(0);
 }
+
+void Shader::SetModel(const glm::mat4 & model) const
+{
+	glUniformMatrix4fv(m_Model_s, 1, GL_FALSE, &model[0][0]);
+}
+
+void Shader::SetView()
+{
+}
+
+void Shader::SetProjection()
+{
+}

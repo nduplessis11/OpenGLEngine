@@ -3,6 +3,8 @@
 #include <GL/glew.h>
 #include <string>
 
+#include "glm/glm.hpp"
+
 class Shader
 {
 private:
@@ -16,6 +18,9 @@ public:
 
 	void Bind() const;
 	void Unbind() const;
+	void SetModel(const glm::mat4& model) const;
+	void SetView();
+	void SetProjection();
 private:
 	std::string LoadShaderFile(const std::string& filepath);
 	void CreateProgram(const std::string& vertexSource, const std::string& fragmentSource);
