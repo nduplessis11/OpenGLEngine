@@ -5,12 +5,6 @@
 #include "Shader.h"
 #include "Mesh.h"
 
-struct Vertex
-{
-	GLfloat position[3];
-	GLfloat color[4];
-};
-
 int main(void)
 {
 	GLFWwindow* window;
@@ -30,29 +24,25 @@ int main(void)
 	if (glewInit() != GLEW_OK)
 		return -1;
 
-
-	Vertex vertices[3] = {
-		{{0.0f, 0.5f, 0.0f}, {1.0f, 0.0f, 0.0f, 1.0f} },
-		{{0.5f, -0.5f, 0.0f}, {0.0f, 1.0f, 0.0f, 1.0f} },
-		{{-0.5f, -0.5f, 0.0f}, {0.0f, 0.0f, 1.0f, 1.0f} },
-	};
-
 	GLfloat points[] = {
-		 0.0f,  0.5f,  0.0f,
-		 1.0f,  0.0f,  0.0f, 1.0f,
-		 0.5f, -0.5f,  0.0f,
-		 0.0f,  1.0f,  0.0f, 1.0f,
 		-0.5f, -0.5f,  0.0f,
-		 0.0f,  0.0f,  1.0f, 1.0f
+		 1.0f,  0.0f,  0.0f, 1.0f,
+		-0.5f,  0.5f,  0.0f,
+		 0.0f,  1.0f,  0.0f, 1.0f,
+		 0.5f,  0.5f,  0.0f,
+		 0.0f,  0.0f,  1.0f, 1.0f,
+		 0.5f, -0.5f,  0.0f,
+		 0.0f,  1.0f,  1.0f, 1.0f
 	};
 
 	GLuint indices[] = {
-		0, 1, 2
+		0, 1, 2,
+		0, 2, 3
 	};
 
 	{
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
-		Mesh mesh(points, sizeof(points) / sizeof(GLfloat), indices, 3);
+		Mesh mesh(points, sizeof(points) / sizeof(GLfloat), indices, 6);
 		Renderer renderer;
 
 		while (!glfwWindowShouldClose(window))
