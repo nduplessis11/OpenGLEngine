@@ -19,8 +19,8 @@ public:
 	void Bind() const;
 	void Unbind() const;
 	void SetModel(const glm::mat4& model) const;
-	void SetView();
-	void SetProjection();
+	void SetView(const glm::mat4& view) const;
+	void SetProjection(const glm::mat4& projection) const;
 private:
 	std::string LoadShaderFile(const std::string& filepath);
 	void CreateProgram(const std::string& vertexSource, const std::string& fragmentSource);

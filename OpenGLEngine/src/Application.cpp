@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "Shader.h"
 #include "Mesh.h"
+#include "Model.h"
 
 int main(void)
 {
@@ -67,13 +68,13 @@ int main(void)
 	{
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
 		Mesh mesh(points, sizeof(points) / sizeof(GLfloat), indices, 36);
-		mesh.SetPosition(glm::vec3(0.0f, 1.0f, -5.0f));
-		mesh.SetRotation(glm::vec3(0.0f, 0.0f, 75.0f));
+		ModelAsset modelAsset { &shader, Mesh(points, sizeof(points) / sizeof(GLfloat), indices, 36) };
+		ModelInstance modelInstance { &modelAsset, glm::mat4(1.0f) };
 		Renderer renderer;
 
 		while (!glfwWindowShouldClose(window))
 		{
-			renderer.Draw(mesh, shader);
+			renderer.Draw(modelInstance);
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}

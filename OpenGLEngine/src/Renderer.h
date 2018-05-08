@@ -3,17 +3,15 @@
 
 #include "Shader.h"
 #include "Mesh.h"
+#include "Model.h"
 
 #include "glm/glm.hpp"
 
 class Renderer
 {
-private:
-	const Shader * m_Shader;
-	glm::mat4 m_Model;
 public:
 	Renderer();
 	~Renderer();
-	void Draw(Mesh & mesh, const Shader & shader);
+	void Draw(ModelInstance & modelInstance);
 };
 
