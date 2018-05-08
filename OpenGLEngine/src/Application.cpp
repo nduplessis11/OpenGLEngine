@@ -67,7 +67,6 @@ int main(void)
 
 	{
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
-		Mesh mesh(points, sizeof(points) / sizeof(GLfloat), indices, 36);
 		ModelAsset modelAsset { &shader, Mesh(points, sizeof(points) / sizeof(GLfloat), indices, 36) };
 		ModelInstance modelInstance { &modelAsset, glm::mat4(1.0f) };
 		Renderer renderer;
