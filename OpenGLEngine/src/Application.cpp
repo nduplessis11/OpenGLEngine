@@ -6,6 +6,9 @@
 #include "Mesh.h"
 #include "Model.h"
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 int main(void)
 {
 	GLFWwindow* window;
@@ -65,9 +68,44 @@ int main(void)
 		5, 2, 6
 	};
 
+	GLfloat grid[] = {
+		 2.0f, 0.0f,   5.0f,
+		 0.0f,  1.0f,  0.0f, 1.0f,
+		 2.0f, 0.0f,   -5.0f,
+		 0.0f,  1.0f,  0.0f, 1.0f,
+
+		 1.0f, 0.0f,   5.0f,
+		 0.0f,  1.0f,  0.0f, 1.0f,
+		 1.0f, 0.0f,   -5.0f,
+		 0.0f,  1.0f,  0.0f, 1.0f,
+
+		 0.0f, 0.0f,   5.0f,
+		 0.0f,  1.0f,  0.0f, 1.0f,
+		 0.0f, 0.0f,   -5.0f,
+		 0.0f,  1.0f,  0.0f, 1.0f,
+
+		-1.0f, 0.0f,   5.0f,
+		 0.0f,  1.0f,  0.0f, 1.0f,
+		-1.0f, 0.0f,   -5.0f,
+		 0.0f,  1.0f,  0.0f, 1.0f,
+
+		-2.0f, 0.0f,   5.0f,
+		 0.0f,  1.0f,  0.0f, 1.0f,
+		-2.0f, 0.0f,   -5.0f,
+		 0.0f,  1.0f,  0.0f, 1.0f,
+	};
+	GLuint gridIndices[] = {
+		0, 1,
+		2, 3,
+		4, 5,
+		6, 7,
+		8, 9
+	};
+
 	{
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
-		ModelAsset modelAsset { &shader, Mesh(points, sizeof(points) / sizeof(GLfloat), indices, 36) };
+		//ModelAsset modelAsset { &shader, Mesh(points, sizeof(points) / sizeof(GLfloat), indices, 36) };
+		ModelAsset modelAsset { &shader, Mesh(grid, sizeof(grid) / sizeof(GLfloat), gridIndices, 10) };
 		ModelInstance modelInstance { &modelAsset, glm::mat4(1.0f) };
 		Renderer renderer;
 
