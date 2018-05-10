@@ -27,7 +27,7 @@ void Renderer::Draw(ModelInstance & modelInstance)
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, NULL);
-	glDrawElements(GL_LINES, 10, GL_UNSIGNED_INT, NULL);
+	glDrawElements(GL_LINES, 42, GL_UNSIGNED_INT, NULL);
 
 	modelInstance.asset->Shader->Unbind();
 	modelInstance.asset->Mesh.UnsetDraw();
