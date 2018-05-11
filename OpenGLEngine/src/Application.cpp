@@ -182,14 +182,26 @@ int main(void)
 
 	{
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
-		//ModelAsset modelAsset { &shader, Mesh(points, sizeof(points) / sizeof(GLfloat), indices, 36) };
-		ModelAsset modelAsset { &shader, Mesh(grid, sizeof(grid) / sizeof(GLfloat), gridIndices, 42) };
-		ModelInstance modelInstance { &modelAsset, glm::mat4(1.0f) };
+		ModelAsset modelAssetCube { &shader, Mesh(points, sizeof(points) / sizeof(GLfloat), indices, 36, GL_TRIANGLES) };
+		ModelAsset modelAssetGrid { &shader, Mesh(grid, sizeof(grid) / sizeof(GLfloat), gridIndices, 42, GL_LINES) };
+		ModelInstance modelInstanceCube { &modelAssetCube, glm::mat4(1.0f) };
+		ModelInstance modelInstanceGrid { &modelAssetGrid, glm::mat4(1.0f) };
+		
+		std::vector<ModelInstance> modelInstances;
+		modelInstances.push_back(modelInstanceCube);
+		modelInstances.push_back(modelInstanceGrid);
+
 		Renderer renderer;
 
 		while (!glfwWindowShouldClose(window))
 		{
-			renderer.Draw(modelInstance);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			std::vector<ModelInstance>::const_iterator it;
+			for (it = modelInstances.begin(); it != modelInstances.end(); it++)
+			{
+				renderer.Draw(*it);
+			}
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}

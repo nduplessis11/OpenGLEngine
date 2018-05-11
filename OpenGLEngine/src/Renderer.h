@@ -7,11 +7,13 @@
 
 #include "glm/glm.hpp"
 
+#include <vector>
+
 class Renderer
 {
 public:
 	Renderer();
 	~Renderer();
-	void Draw(ModelInstance & modelInstance);
+	void Draw(const ModelInstance& modelInstance);
 };
 
