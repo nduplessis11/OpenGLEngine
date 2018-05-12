@@ -10,6 +10,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 #include "Grid.h"
+#include "Cube.h"
 
 
 int main(void)
@@ -31,56 +32,31 @@ int main(void)
 	if (glewInit() != GLEW_OK)
 		return -1;
 
-	GLfloat points[] = {
-		-0.5f, -0.5f,  0.5f,	1.0f,  0.0f,  0.0f, 1.0f,
-		-0.5f,  0.5f,  0.5f,	0.0f,  1.0f,  0.0f, 1.0f,
-		 0.5f,  0.5f,  0.5f,	0.0f,  0.0f,  1.0f, 1.0f,
-		 0.5f, -0.5f,  0.5f,	0.0f,  1.0f,  1.0f, 1.0f,
-
-		-0.5f, -0.5f, -0.5f,	1.0f,  0.0f,  0.0f, 1.0f,
-		-0.5f,  0.5f, -0.5f,	0.0f,  1.0f,  0.0f, 1.0f,
-		 0.5f,  0.5f, -0.5f,	0.0f,  0.0f,  1.0f, 1.0f,
-		 0.5f, -0.5f, -0.5f,	0.0f,  1.0f,  1.0f, 1.0f
-	};
-
-	GLuint indices[] = {
-		0, 1, 2,
-		0, 2, 3,
-
-		4, 5, 6,
-		4, 6, 7,
-
-		4, 5, 1,
-		4, 1, 0,
-
-		3, 2, 6,
-		3, 6, 7,
-
-		4, 0, 3,
-		4, 3, 7,
-
-		5, 1, 2,
-		5, 2, 6
-	};
-
 	{
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
+
+		Cube cube = createCube(1.0f);
+		GLfloat* points = &cube.front.topLeft.x;
+		GLuint* cubeIndices = &cube.indices[0].x;
+		
+		GLuint cube_fc = cubeFloatCount(cube);
+		GLuint cube_ic = cubeIndexCount(cube);
+
+		Mesh meshCube(points, cube_fc, cubeIndices, cube_ic, GL_TRIANGLES);
+		ModelAsset modelAssetCube{ &shader, meshCube };
+		ModelInstance modelInstanceCube{ &modelAssetCube, glm::mat4(1.0f) };
 
 
 		Grid grid = createGrid(5);
 		GLfloat* gridLines = &grid.gridlines[0].start.x;
 		GLuint* gridIndices = &grid.indices[0].x;
 
-		GLuint floatCount = gridFloatCount(grid);
-		GLuint indexCount = gridIndexCount(grid);
+		GLuint grid_fc = gridFloatCount(grid);
+		GLuint grid_ic = gridIndexCount(grid);
 
-		Mesh meshGrid(gridLines, floatCount, gridIndices, indexCount, GL_LINES);
+		Mesh meshGrid(gridLines, grid_fc, gridIndices, grid_ic, GL_LINES);
 		ModelAsset modelAssetGrid{ &shader, meshGrid };
 		ModelInstance modelInstanceGrid{ &modelAssetGrid, glm::mat4(1.0f) };
-
-
-		ModelAsset modelAssetCube { &shader, Mesh(points, sizeof(points) / sizeof(GLfloat), indices, 36, GL_TRIANGLES) };
-		ModelInstance modelInstanceCube { &modelAssetCube, glm::mat4(1.0f) };
 	
 		std::vector<ModelInstance> modelInstances;
 		modelInstances.push_back(modelInstanceCube);
