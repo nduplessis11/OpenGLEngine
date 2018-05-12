@@ -5,9 +5,11 @@
 #include "Shader.h"
 #include "Mesh.h"
 #include "Model.h"
+#include "Texture.h"
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+#include "stb/stb_image.h"
 
 #include "Grid.h"
 #include "Cube.h"
@@ -33,6 +35,7 @@ int main(void)
 		return -1;
 
 	{
+		LoadTexture();
 		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
 
 		Cube cube = createCube(1.0f);
@@ -61,7 +64,7 @@ int main(void)
 		std::vector<ModelInstance> modelInstances;
 		modelInstances.push_back(modelInstanceCube);
 		modelInstances.push_back(modelInstanceGrid);
-
+		
 		Renderer renderer;
 
 		while (!glfwWindowShouldClose(window))

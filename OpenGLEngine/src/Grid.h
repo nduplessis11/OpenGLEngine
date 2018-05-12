@@ -8,8 +8,10 @@ struct GridLine
 {
 	glm::vec3 start;
 	glm::vec4 start_color;
+	glm::vec2 start_texture;
 	glm::vec3 finish;
 	glm::vec4 finish_color;
+	glm::vec2 end_texture;
 };
 
 struct Grid
@@ -28,7 +30,16 @@ Grid createGrid(int lineCount)
 
 	for (int i = 0; i < totalLineCount; i++)
 	{
-		GridLine gridline{ glm::vec3(x, 0.0f, z), glm::vec4(1.0f, 0.0f, 0.0f, 1.0f), glm::vec3(x, 0.0f, -z), glm::vec4(1.0f, 0.0f, 0.0f, 1.0f) };
+		GridLine gridline
+		{
+			glm::vec3(x, 0.0f, z),
+			glm::vec4(1.0f, 0.0f, 0.0f, 1.0f),
+			glm::vec2(0.0f),
+			glm::vec3(x, 0.0f, -z), 
+			glm::vec4(1.0f, 0.0f, 0.0f, 1.0f),
+			glm::vec2(0.0f)
+		};
+
 		x += 1.0f;
 		grid.gridlines.push_back(gridline);
 		grid.indices.push_back(glm::uvec2(index, index+1));
@@ -40,7 +51,16 @@ Grid createGrid(int lineCount)
 
 	for (int i = 0; i < totalLineCount; i++)
 	{
-		GridLine gridline{ glm::vec3(x, 0.0f, z), glm::vec4(1.0f, 0.0f, 0.0f, 1.0f), glm::vec3(-x, 0.0f, z), glm::vec4(1.0f, 0.0f, 0.0f, 1.0f) };
+		GridLine gridline
+		{ 
+			glm::vec3(x, 0.0f, z), 
+			glm::vec4(1.0f, 0.0f, 0.0f, 1.0f), 
+			glm::vec2(0.0f),
+			glm::vec3(-x, 0.0f, z), 
+			glm::vec4(1.0f, 0.0f, 0.0f, 1.0f),
+			glm::vec2(0.0f)
+		};
+
 		z += 1.0f;
 		grid.gridlines.push_back(gridline);
 		grid.indices.push_back(glm::uvec2(index, index + 1));
