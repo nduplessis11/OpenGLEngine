@@ -42,6 +42,9 @@
     <ClCompile Include="src\vendor\stb\stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\VertexLayout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\VertexArray.h">
@@ -509,10 +512,11 @@
     <ClInclude Include="src\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\VertexLayout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\shader.fs" />
-    <None Include="res\shaders\shader.vs" />
     <None Include="src\vendor\glm\detail\func_common.inl">
       <Filter>Header Files</Filter>
     </None>
@@ -861,6 +865,10 @@
     <None Include="src\vendor\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="res\shaders\basic_fs.shader" />
+    <None Include="res\shaders\basic_vs.shader" />
+    <None Include="res\shaders\grid_vs.shader" />
+    <None Include="res\shaders\grid_fs.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\container.jpg">

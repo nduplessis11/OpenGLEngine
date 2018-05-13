@@ -13,6 +13,7 @@
 
 #include "Grid.h"
 #include "Cube.h"
+#include "VertexLayout.h"
 
 
 int main(void)
@@ -36,7 +37,9 @@ int main(void)
 
 	{
 		LoadTexture();
-		Shader shader("res/shaders/shader.vs", "res/shaders/shader.fs");
+		
+		Shader basicShader("res/shaders/basic_vs.shader", "res/shaders/basic_fs.shader");
+		Shader gridShader("res/shaders/grid_vs.shader", "res/shaders/grid_fs.shader");
 
 		Cube cube = createCube(1.0f);
 		GLfloat* points = &cube.front.topLeft.x;
@@ -44,9 +47,10 @@ int main(void)
 		
 		GLuint cube_fc = cubeFloatCount(cube);
 		GLuint cube_ic = cubeIndexCount(cube);
+		VertexLayout basicLayout = createBasicLayout();
 
-		Mesh meshCube(points, cube_fc, cubeIndices, cube_ic, GL_TRIANGLES);
-		ModelAsset modelAssetCube{ &shader, meshCube };
+		Mesh meshCube(points, cube_fc, cubeIndices, cube_ic, GL_TRIANGLES, basicLayout);
+		ModelAsset modelAssetCube{ &basicShader, meshCube };
 		ModelInstance modelInstanceCube{ &modelAssetCube, glm::mat4(1.0f) };
 
 
@@ -56,9 +60,10 @@ int main(void)
 
 		GLuint grid_fc = gridFloatCount(grid);
 		GLuint grid_ic = gridIndexCount(grid);
+		VertexLayout gridLayout = createGridLayout();
 
-		Mesh meshGrid(gridLines, grid_fc, gridIndices, grid_ic, GL_LINES);
-		ModelAsset modelAssetGrid{ &shader, meshGrid };
+		Mesh meshGrid(gridLines, grid_fc, gridIndices, grid_ic, GL_LINES, gridLayout);
+		ModelAsset modelAssetGrid{ &gridShader, meshGrid };
 		ModelInstance modelInstanceGrid{ &modelAssetGrid, glm::mat4(1.0f) };
 	
 		std::vector<ModelInstance> modelInstances;

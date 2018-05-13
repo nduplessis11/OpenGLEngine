@@ -135,6 +135,7 @@
     <ClCompile Include="src\VertexBuffer.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\VertexArray.cpp" />
+    <ClCompile Include="src\VertexLayout.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Cube.h" />
@@ -292,10 +293,13 @@
     <ClInclude Include="src\vendor\stb\stb_image.h" />
     <ClInclude Include="src\VertexBuffer.h" />
     <ClInclude Include="src\VertexArray.h" />
+    <ClInclude Include="src\VertexLayout.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\shader.fs" />
-    <None Include="res\shaders\shader.vs" />
+    <None Include="res\shaders\basic_fs.shader" />
+    <None Include="res\shaders\basic_vs.shader" />
+    <None Include="res\shaders\grid_fs.shader" />
+    <None Include="res\shaders\grid_vs.shader" />
     <None Include="src\vendor\glm\detail\func_common.inl" />
     <None Include="src\vendor\glm\detail\func_common_simd.inl" />
     <None Include="src\vendor\glm\detail\func_exponential.inl" />

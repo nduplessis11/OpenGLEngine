@@ -4,6 +4,7 @@
 
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "VertexLayout.h"
 
 class VertexArray
 {
@@ -13,7 +14,7 @@ public:
 	VertexArray();
 	~VertexArray();
 
-	void AddIndexedVertexBuffer(const VertexBuffer & vertexBuffer, const IndexBuffer & indexBuffer);
+	void AddIndexedVertexBuffer(const VertexBuffer & vertexBuffer, const IndexBuffer & indexBuffer, const VertexLayout & vertexLayout);
 	void Bind() const;
 	void Unbind() const;
 };

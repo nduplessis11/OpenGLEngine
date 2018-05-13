@@ -7,6 +7,7 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "VertexLayout.h"
 
 class Mesh
 {
@@ -18,7 +19,7 @@ private:
 	GLenum m_DrawMode;
 	GLuint m_IndexCount;
 public:
-	Mesh(const GLfloat* data, GLuint count, const GLuint* indices, GLuint indexCount, GLenum mode);
+	Mesh(const GLfloat* data, GLuint count, const GLuint* indices, GLuint indexCount, GLenum mode, const VertexLayout & vertexLayout);
 	~Mesh();
 
 	void SetDraw();
