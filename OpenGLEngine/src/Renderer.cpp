@@ -19,6 +19,12 @@ void Renderer::Draw(const ModelInstance& modelInstance)
 {
 		modelInstance.asset->Shader->Bind();
 		modelInstance.asset->Shader->SetModel(modelInstance.transform);
+
+		if (modelInstance.asset->Texture)
+		{
+			modelInstance.asset->Texture->Bind();
+		}
+
 		modelInstance.asset->Mesh.SetDraw();
 
 		glm::mat4 view(1.0f);
@@ -30,6 +36,10 @@ void Renderer::Draw(const ModelInstance& modelInstance)
 
 		glDrawElements(modelInstance.asset->Mesh.GetDrawMode(), modelInstance.asset->Mesh.GetIndexCount(), GL_UNSIGNED_INT, NULL);
 
+		if (modelInstance.asset->Texture)
+		{
+			modelInstance.asset->Texture->Unbind();
+		}
 		modelInstance.asset->Shader->Unbind();
 		modelInstance.asset->Mesh.UnsetDraw();
 }

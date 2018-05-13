@@ -36,10 +36,10 @@ int main(void)
 		return -1;
 
 	{
-		LoadTexture();
-		
 		Shader basicShader("res/shaders/basic_vs.shader", "res/shaders/basic_fs.shader");
 		Shader gridShader("res/shaders/grid_vs.shader", "res/shaders/grid_fs.shader");
+
+		Texture texture("res/textures/container.jpg");
 
 		Cube cube = createCube(1.0f);
 		GLfloat* points = &cube.front.topLeft.x;
@@ -50,7 +50,7 @@ int main(void)
 		VertexLayout basicLayout = createBasicLayout();
 
 		Mesh meshCube(points, cube_fc, cubeIndices, cube_ic, GL_TRIANGLES, basicLayout);
-		ModelAsset modelAssetCube{ &basicShader, meshCube };
+		ModelAsset modelAssetCube{ &basicShader, &texture, meshCube };
 		ModelInstance modelInstanceCube{ &modelAssetCube, glm::mat4(1.0f) };
 
 
@@ -63,7 +63,7 @@ int main(void)
 		VertexLayout gridLayout = createGridLayout();
 
 		Mesh meshGrid(gridLines, grid_fc, gridIndices, grid_ic, GL_LINES, gridLayout);
-		ModelAsset modelAssetGrid{ &gridShader, meshGrid };
+		ModelAsset modelAssetGrid{ &gridShader, NULL, meshGrid };
 		ModelInstance modelInstanceGrid{ &modelAssetGrid, glm::mat4(1.0f) };
 	
 		std::vector<ModelInstance> modelInstances;

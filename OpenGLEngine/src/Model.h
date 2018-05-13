@@ -2,10 +2,12 @@
 
 #include "Shader.h"
 #include "Mesh.h"
+#include "Texture.h"
 
 struct ModelAsset
 {
 	Shader* Shader;
+	Texture* Texture;
 	Mesh Mesh;
 };
 
