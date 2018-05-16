@@ -44,7 +44,7 @@ void Camera::MoveRight(float deltaTime)
 
 void Camera::ProcessMouseMovement(float xoffset, float yoffset)
 {
-	float sensitivity = 2.0f;
+	float sensitivity = 0.05f;
 	xoffset *= sensitivity;
 	yoffset *= sensitivity;
 
