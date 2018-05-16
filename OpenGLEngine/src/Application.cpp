@@ -15,6 +15,47 @@
 #include "Cube.h"
 #include "VertexLayout.h"
 
+Camera camera;
+
+float deltaTime = 0.0f;
+float lastFrame = 0.0f;
+
+float lastX = 400, lastY = 300;
+bool firstMouse = true;
+
+void processInput(GLFWwindow *window, Camera& camera)
+{
+	float currentFrame = glfwGetTime();
+	deltaTime = currentFrame - lastFrame;
+	lastFrame = currentFrame;
+
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) camera.MoveForward(deltaTime);
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) camera.MoveBackward(deltaTime);
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) camera.MoveLeft(deltaTime);
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) camera.MoveRight(deltaTime);
+
+}
+
+void mouseCallback(GLFWwindow* window, double xpos, double ypos)
+{
+	if (firstMouse)
+	{
+		lastX = xpos;
+		lastY = ypos;
+		firstMouse = false;
+	}
+
+	float xoffset = xpos - lastX;
+	float yoffset = lastY - ypos;
+	lastX = xpos;
+	lastY = ypos;
+
+	float sensitivity = 0.05;
+	xoffset *= sensitivity;
+	yoffset *= sensitivity;
+
+	camera.ProcessMouseMovement(xoffset, yoffset);
+}
 
 int main(void)
 {
@@ -23,7 +64,7 @@ int main(void)
 	if (!glfwInit())
 		return -1;
 
-	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+	window = glfwCreateWindow(800, 600, "Hello World", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -34,6 +75,9 @@ int main(void)
 
 	if (glewInit() != GLEW_OK)
 		return -1;
+
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetCursorPosCallback(window, mouseCallback);
 
 	{
 		Shader basicShader("res/shaders/basic_vs.shader", "res/shaders/basic_fs.shader");
@@ -70,11 +114,12 @@ int main(void)
 		modelInstances.push_back(modelInstanceCube);
 		modelInstances.push_back(modelInstanceGrid);
 		
-		Camera camera;
+		
 		Renderer renderer;
 
 		while (!glfwWindowShouldClose(window))
 		{
+			processInput(window, camera);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			std::vector<ModelInstance>::const_iterator it;

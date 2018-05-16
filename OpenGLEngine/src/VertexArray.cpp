@@ -24,12 +24,6 @@ void VertexArray::AddIndexedVertexBuffer(const VertexBuffer & vertexBuffer, cons
 		glVertexAttribPointer(it->location, it->dimensionCount, GL_FLOAT, GL_FALSE, vertexLayout.stride, (void*)it->offset);
 	}
 
-	//glEnableVertexAttribArray(0);
-	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), 0);
-	//glEnableVertexAttribArray(1);
-	//glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
-	//glEnableVertexAttribArray(2);
-	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void*)(7 * sizeof(GLfloat)));
 	indexBuffer.Bind();
 
 	Unbind();
