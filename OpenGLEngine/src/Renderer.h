@@ -4,6 +4,7 @@
 #include "Shader.h"
 #include "Mesh.h"
 #include "Model.h"
+#include "Camera.h"
 
 #include "glm/glm.hpp"
 
@@ -14,6 +15,6 @@ class Renderer
 public:
 	Renderer();
 	~Renderer();
-	void Draw(const ModelInstance& modelInstance);
+	void Draw(const Camera& camera, const ModelInstance& modelInstance);
 };
 

@@ -15,7 +15,7 @@ Renderer::~Renderer()
 {
 }
 
-void Renderer::Draw(const ModelInstance& modelInstance)
+void Renderer::Draw(const Camera& camera, const ModelInstance& modelInstance)
 {
 		modelInstance.asset->Shader->Bind();
 		modelInstance.asset->Shader->SetModel(modelInstance.transform);
@@ -26,13 +26,7 @@ void Renderer::Draw(const ModelInstance& modelInstance)
 		}
 
 		modelInstance.asset->Mesh.SetDraw();
-
-		glm::mat4 view(1.0f);
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-		view = glm::rotate(view, glm::radians(25.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-		view = glm::rotate(view, glm::radians(45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-
-		modelInstance.asset->Shader->SetView(view);
+		modelInstance.asset->Shader->SetView(camera.GetView());
 
 		glDrawElements(modelInstance.asset->Mesh.GetDrawMode(), modelInstance.asset->Mesh.GetIndexCount(), GL_UNSIGNED_INT, NULL);
 

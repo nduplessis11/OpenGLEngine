@@ -70,6 +70,7 @@ int main(void)
 		modelInstances.push_back(modelInstanceCube);
 		modelInstances.push_back(modelInstanceGrid);
 		
+		Camera camera;
 		Renderer renderer;
 
 		while (!glfwWindowShouldClose(window))
@@ -79,7 +80,7 @@ int main(void)
 			std::vector<ModelInstance>::const_iterator it;
 			for (it = modelInstances.begin(); it != modelInstances.end(); it++)
 			{
-				renderer.Draw(*it);
+				renderer.Draw(camera, *it);
 			}
 			glfwSwapBuffers(window);
 			glfwPollEvents();
