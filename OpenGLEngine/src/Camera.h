@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 class Camera
 {
@@ -14,6 +15,7 @@ private:
 	float m_Yaw;
 
 	float m_Speed;
+	float m_Sensitivity;
 public:
 	Camera();
 	void MoveForward(float deltaTime);
@@ -23,5 +25,6 @@ public:
 
 	void ProcessMouseMovement(float xoffset, float yoffset);
 
-	inline glm::mat4 GetView() const { return m_View; }
+	inline glm::mat4 GetView() const { return glm::lookAt(m_Position, m_Position + m_Front, m_Up);
+	}
 };

@@ -14,6 +14,7 @@ Camera::Camera()
 	m_Yaw = 0.0f;
 
 	m_Speed = 2.5f;
+	m_Sensitivity = 0.05f;
 
 	m_View = glm::lookAt(m_Position, m_Position + m_Front, m_Up);
 }
@@ -21,32 +22,27 @@ Camera::Camera()
 void Camera::MoveForward(float deltaTime)
 {
 	m_Position += deltaTime * m_Speed * m_Front;
-	m_View = glm::lookAt(m_Position, m_Position + m_Front, m_Up);
 }
 
 void Camera::MoveBackward(float deltaTime)
 {
 	m_Position -= deltaTime * m_Speed * m_Front;
-	m_View = glm::lookAt(m_Position, m_Position + m_Front, m_Up);
 }
 
 void Camera::MoveLeft(float deltaTime)
 {
 	m_Position -= deltaTime * glm::normalize(glm::cross(m_Front, m_Up)) * m_Speed;
-	m_View = glm::lookAt(m_Position, m_Position + m_Front, m_Up);
 }
 
 void Camera::MoveRight(float deltaTime)
 {
 	m_Position += deltaTime * glm::normalize(glm::cross(m_Front, m_Up)) * m_Speed;
-	m_View = glm::lookAt(m_Position, m_Position + m_Front, m_Up);
 }
 
 void Camera::ProcessMouseMovement(float xoffset, float yoffset)
 {
-	float sensitivity = 0.05f;
-	xoffset *= sensitivity;
-	yoffset *= sensitivity;
+	xoffset *= m_Sensitivity;
+	yoffset *= m_Sensitivity;
 
 	m_Yaw += xoffset;
 	m_Pitch += yoffset;
@@ -61,6 +57,4 @@ void Camera::ProcessMouseMovement(float xoffset, float yoffset)
 	front.y = sin(glm::radians(m_Pitch));
 	front.z = sin(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
 	m_Front = glm::normalize(front);
-
-	m_View = glm::lookAt(m_Position, m_Position + m_Front, m_Up);
 }
