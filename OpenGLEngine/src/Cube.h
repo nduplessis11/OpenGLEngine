@@ -8,15 +8,19 @@ struct CubeFace
 {
 	glm::vec3 topLeft;
 	glm::vec2 topLeftTex;
+	glm::vec3 topLeftNormal;
 
 	glm::vec3 bottomLeft;
 	glm::vec2 bottomLeftTex;
+	glm::vec3 bottomLeftNormal;
 
 	glm::vec3 bottomRight;
 	glm::vec2 bottomRightTex;
+	glm::vec3 bottomRightNormal;
 
 	glm::vec3 topRight;
 	glm::vec2 topRightTex;
+	glm::vec3 topRightNormal;
 };
 
 struct Cube
@@ -42,18 +46,22 @@ Cube createCube(float size)
 		// 0
 		glm::vec3(leftCoord, topCoord, frontCoord),
 		glm::vec2(0.0f, 1.0f),
+		glm::vec3(0.0, 0.0, 1.0),
 
 		// 1
 		glm::vec3(leftCoord, bottomCoord, frontCoord),
 		glm::vec2(0.0f, 0.0f),
+		glm::vec3(0.0, 0.0, 1.0),
 
 		// 2
 		glm::vec3(rightCoord, bottomCoord, frontCoord),
 		glm::vec2(1.0f, 0.0f),
+		glm::vec3(0.0, 0.0, 1.0),
 
 		// 3
 		glm::vec3(rightCoord, topCoord, frontCoord),
 		glm::vec2(1.0f, 1.0f),
+		glm::vec3(0.0, 0.0, 1.0)
 	};
 
 	cube.front = cubeFaceFront;
@@ -67,18 +75,22 @@ Cube createCube(float size)
 		// 4
 		glm::vec3(-leftCoord, topCoord, backCoord),
 		glm::vec2(0.0f, 1.0f),
+		glm::vec3(0.0, 0.0, -1.0),
 
 		// 5
 		glm::vec3(-leftCoord, bottomCoord, backCoord),
 		glm::vec2(0.0f, 0.0f),
+		glm::vec3(0.0, 0.0, -1.0),
 
 		// 6
 		glm::vec3(-rightCoord, bottomCoord, backCoord),
 		glm::vec2(1.0f, 0.0f),
+		glm::vec3(0.0, 0.0, -1.0),
 
 		// 7
 		glm::vec3(-rightCoord, topCoord, backCoord),
 		glm::vec2(1.0f, 1.0f),
+		glm::vec3(0.0, 0.0, -1.0)
 	};
 
 	cube.back = cubeFaceBack;

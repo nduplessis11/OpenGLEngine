@@ -27,6 +27,10 @@ VertexLayout createBasicLayout()
 	vertexLayout.attributes.push_back(texture);
 	vertexLayout.stride += texture.dimensionCount * sizeof(float);
 
+	VertexAttribute normal{ 2, 3, vertexLayout.stride };
+	vertexLayout.attributes.push_back(normal);
+	vertexLayout.stride += normal.dimensionCount * sizeof(float);
+
 	return vertexLayout;
 }
 
