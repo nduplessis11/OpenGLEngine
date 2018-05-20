@@ -96,14 +96,8 @@ void Shader::SetProjection(const glm::mat4& projection) const
 	glUniformMatrix4fv(m_Projection_s, 1, GL_FALSE, &projection[0][0]);
 }
 
-void Shader::SetObjectColor(const glm::vec3 & color) const
+void Shader::SetAmbientLight(const glm::vec3 & light) const
 {
-	GLuint objectColor_s = glGetUniformLocation(m_Id, "u_ObjectColor");
-	glUniform3fv(objectColor_s, 1, glm::value_ptr(color));
-}
-
-void Shader::SetLightColor(const glm::vec3 & color) const
-{
-	GLuint lightColor_s = glGetUniformLocation(m_Id, "u_LightColor");
-	glUniform3fv(lightColor_s, 1, glm::value_ptr(color));
+	GLuint ambientLight_s = glGetUniformLocation(m_Id, "u_AmbientLight");
+	glUniform3fv(ambientLight_s, 1, glm::value_ptr(light));
 }

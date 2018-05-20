@@ -23,8 +23,7 @@ public:
 	void SetView(const glm::mat4& view) const;
 	void SetProjection(const glm::mat4& projection) const;
 
-	void SetObjectColor(const glm::vec3& color) const;
-	void SetLightColor(const glm::vec3& color) const;
+	void SetAmbientLight(const glm::vec3 & light) const;
 private:
 	std::string LoadShaderFile(const std::string& filepath);
 	void CreateProgram(const std::string& vertexSource, const std::string& fragmentSource);

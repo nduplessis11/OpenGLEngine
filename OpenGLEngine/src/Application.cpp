@@ -93,11 +93,13 @@ int main(void)
 
 		Mesh meshLight(lpoints, light_fc, lightIndices, light_ic, GL_TRIANGLES, lightLayout);
 		ModelAsset modelAssetLight{ &lightShader, NULL, meshLight };
-		ModelInstance modelInstanceLight{ &modelAssetLight, glm::translate(glm::mat4(1.0f), glm::vec3(4.0f, 3.0f, -3.0f)) };
+		glm::mat4 transform = glm::mat4(1.0f);
+		transform = glm::translate(transform, glm::vec3(4.0f, 3.0f, -3.0f));
+		transform = glm::scale(transform, glm::vec3(0.2f, 0.2f, 0.2f));
+		ModelInstance modelInstanceLight{ &modelAssetLight, transform };
 
 		lightShader.Bind();
-		lightShader.SetObjectColor(glm::vec3(1.0f, 0.5f, 0.31f));
-		lightShader.SetLightColor(glm::vec3(1.0f, 1.0f, 1.0f));
+		basicShader.SetAmbientLight(glm::vec3(0.5f, 0.5f, 0.5f));
 		lightShader.Unbind();
 
 
@@ -112,6 +114,10 @@ int main(void)
 		Mesh meshCube(points, cube_fc, cubeIndices, cube_ic, GL_TRIANGLES, basicLayout);
 		ModelAsset modelAssetCube{ &basicShader, &texture, meshCube };
 		ModelInstance modelInstanceCube{ &modelAssetCube, glm::mat4(1.0f) };
+
+		basicShader.Bind();
+		basicShader.SetAmbientLight(glm::vec3(0.8f, 0.8f, 0.8f));
+		basicShader.Unbind();
 
 
 		Grid grid = createGrid(5);
