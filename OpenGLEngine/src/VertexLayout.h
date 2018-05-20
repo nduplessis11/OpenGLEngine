@@ -17,3 +17,4 @@ struct VertexLayout
 
 VertexLayout createGridLayout();
 VertexLayout createBasicLayout();
+VertexLayout createLightLayout();

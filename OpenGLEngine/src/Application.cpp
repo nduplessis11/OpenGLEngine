@@ -13,6 +13,7 @@
 
 #include "Grid.h"
 #include "Cube.h"
+#include "Light.h"
 #include "VertexLayout.h"
 
 Camera camera;
@@ -78,8 +79,27 @@ int main(void)
 	{
 		Shader basicShader("res/shaders/basic_vs.shader", "res/shaders/basic_fs.shader");
 		Shader gridShader("res/shaders/grid_vs.shader", "res/shaders/grid_fs.shader");
+		Shader lightShader("res/shaders/light_vs.shader", "res/shaders/light_fs.shader");
 
 		Texture texture("res/textures/container.jpg");
+
+		Light light = createLight(1.0f);
+		GLfloat* lpoints = &light.front.topLeft.x;
+		GLuint* lightIndices = &light.indices[0].x;
+
+		GLuint light_fc = lightFloatCount(light);
+		GLuint light_ic = lightIndexCount(light);
+		VertexLayout lightLayout = createLightLayout();
+
+		Mesh meshLight(lpoints, light_fc, lightIndices, light_ic, GL_TRIANGLES, lightLayout);
+		ModelAsset modelAssetLight{ &lightShader, NULL, meshLight };
+		ModelInstance modelInstanceLight{ &modelAssetLight, glm::translate(glm::mat4(1.0f), glm::vec3(4.0f, 3.0f, -3.0f)) };
+
+		lightShader.Bind();
+		lightShader.SetObjectColor(glm::vec3(1.0f, 0.5f, 0.31f));
+		lightShader.SetLightColor(glm::vec3(1.0f, 1.0f, 1.0f));
+		lightShader.Unbind();
+
 
 		Cube cube = createCube(1.0f);
 		GLfloat* points = &cube.front.topLeft.x;
@@ -109,6 +129,7 @@ int main(void)
 		std::vector<ModelInstance> modelInstances;
 		modelInstances.push_back(modelInstanceCube);
 		modelInstances.push_back(modelInstanceGrid);
+		modelInstances.push_back(modelInstanceLight);
 		
 		
 		Renderer renderer;

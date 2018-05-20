@@ -29,3 +29,14 @@ VertexLayout createBasicLayout()
 
 	return vertexLayout;
 }
+
+VertexLayout createLightLayout()
+{
+	VertexLayout vertexLayout;
+
+	VertexAttribute position{ 0, 3, 0 };
+	vertexLayout.attributes.push_back(position);
+	vertexLayout.stride = position.dimensionCount * sizeof(float);
+
+	return vertexLayout;
+}

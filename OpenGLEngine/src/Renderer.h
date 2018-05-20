@@ -16,5 +16,7 @@ public:
 	Renderer();
 	~Renderer();
 	void Draw(const Camera& camera, const ModelInstance& modelInstance);
+private:
+	glm::mat4 m_Perspective;
 };
 
